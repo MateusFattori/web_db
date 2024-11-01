@@ -25,7 +25,7 @@ const EditarPage = () => {
   // Função para buscar os clientes da API
   const fetchClientes = async () => {
     try {
-      const response = await axios.get('https://nextiawebapp.azurewebsites.net/cliente'); // Ajuste a URL da sua API
+      const response = await axios.get('http://localhost:8080/clientes'); // Ajuste a URL da sua API
       setClientes(response.data);
       setLoading(false);
     } catch (err) {

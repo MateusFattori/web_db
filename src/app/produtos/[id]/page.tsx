@@ -21,7 +21,7 @@ const EditarProdutoPage = () => {
   // Função para buscar os dados do produto com base no ID
   const fetchProduto = async () => {
     try {
-      const response = await axios.get(`http://localhost:8080/produtos/${id}`);
+      const response = await axios.get(`http://localhost:8082/produtos/${id}`);
       setProduto(response.data);
       setLoading(false);
     } catch (err) {
@@ -34,7 +34,7 @@ const EditarProdutoPage = () => {
   const handleUpdate = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:8080/produtos/${id}`, produto);
+      await axios.put(`http://localhost:8082/produtos/${id}`, produto);
       alert("Produto atualizado com sucesso");
       router.push("/produtos"); // Redireciona para a lista de produtos após a atualização
     } catch (err) {

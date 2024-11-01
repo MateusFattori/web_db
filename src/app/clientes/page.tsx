@@ -23,7 +23,7 @@ const ClientesPage = () => {
   // Função para buscar os clientes da API
   const fetchClientes = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/clientes'); // Altere para a URL da sua API
+      const response = await axios.get('http://localhost:8082/clientes'); // Altere para a URL da sua API
       setClientes(response.data); // Definindo os dados de clientes
       setLoading(false); // Desabilita o estado de carregamento
     } catch (err) {

@@ -25,7 +25,7 @@ const EditarPage = () => {
   // Função para buscar os clientes da API
   const fetchClientes = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/clientes'); // Ajuste a URL da sua API
+      const response = await axios.get('http://localhost:8082/clientes'); // Ajuste a URL da sua API
       setClientes(response.data);
       setLoading(false);
     } catch (err) {
@@ -37,7 +37,7 @@ const EditarPage = () => {
   // Função para excluir cliente
   const excluirCliente = async (id: number) => {
     try {
-      await axios.delete(`https://nextiawebapp.azurewebsites.net/cliente/${id}`); // Ajuste para a URL de exclusão
+      await axios.delete(`http://localhost:8082/clientes/${id}`); // Ajuste para a URL de exclusão
       // Após a exclusão, remova o cliente da lista localmente
       setClientes(clientes.filter(cliente => cliente.id !== id));
       alert('Cliente excluído com sucesso');

@@ -19,7 +19,7 @@ const ListarProdutosPage = () => {
   // Função para buscar os produtos da API
   const fetchProdutos = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/produtos');
+      const response = await axios.get('http://localhost:8082/produtos');
       setProdutos(response.data);
       setLoading(false);
     } catch (err) {
@@ -31,7 +31,7 @@ const ListarProdutosPage = () => {
   // Função para excluir produto
   const excluirProduto = async (id: number) => {
     try {
-      await axios.delete(`http://localhost:8080/produtos/${id}`);
+      await axios.delete(`http://localhost:8082/produtos/${id}`);
       // Remover o produto da lista localmente após a exclusão
       setProdutos(produtos.filter(produto => produto.id !== id));
       alert('Produto excluído com sucesso');

@@ -16,7 +16,7 @@ const Home = () => {
   // Função para buscar os produtos
   const fetchProdutos = async () => {
     try {
-      const response = await axios.get('https://nextiawebapp.azurewebsites.net/produto'); // Substitua localhost pelo IP se necessário
+      const response = await axios.get('http://localhost:8082/produtos'); // Substitua localhost pelo IP se necessário
       setProdutos(response.data);
     } catch (error) {
       console.error('Erro ao buscar produtos:', error);

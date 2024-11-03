@@ -2,13 +2,19 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
-import Layout from '../components/Layout'; // Ajuste o caminho conforme necessário
+import Layout from '../components/Layout';
 
 interface Produto {
-  id: number;
+  id: string;
   nome: string;
   categoria: string;
   valor: number;
+  estoque: number;
+  dt_venci: string;
+  dt_fabrica: string;
+  marca: string;
+  unidadeMedida: string;
+  peso_volume: string;
 }
 
 const ListarProdutosPage = () => {
@@ -29,10 +35,9 @@ const ListarProdutosPage = () => {
   };
 
   // Função para excluir produto
-  const excluirProduto = async (id: number) => {
+  const excluirProduto = async (id: string) => {
     try {
       await axios.delete(`http://localhost:8082/produtos/${id}`);
-      // Remover o produto da lista localmente após a exclusão
       setProdutos(produtos.filter(produto => produto.id !== id));
       alert('Produto excluído com sucesso');
     } catch (error) {
@@ -41,7 +46,7 @@ const ListarProdutosPage = () => {
   };
 
   useEffect(() => {
-    fetchProdutos(); // Busca os dados da API quando o componente é montado
+    fetchProdutos();
   }, []);
 
   return (
@@ -60,6 +65,12 @@ const ListarProdutosPage = () => {
                 <th className="px-4 py-2 text-left text-gray-500">Nome</th>
                 <th className="px-4 py-2 text-left text-gray-500">Categoria</th>
                 <th className="px-4 py-2 text-left text-gray-500">Valor</th>
+                <th className="px-4 py-2 text-left text-gray-500">Estoque</th>
+                <th className="px-4 py-2 text-left text-gray-500">Data de Vencimento</th>
+                <th className="px-4 py-2 text-left text-gray-500">Data de Fabricação</th>
+                <th className="px-4 py-2 text-left text-gray-500">Marca</th>
+                <th className="px-4 py-2 text-left text-gray-500">Unidade de Medida</th>
+                <th className="px-4 py-2 text-left text-gray-500">Peso/Volume</th>
                 <th className="px-4 py-2 text-left text-gray-500">Ações</th>
               </tr>
             </thead>
@@ -68,7 +79,13 @@ const ListarProdutosPage = () => {
                 <tr key={produto.id} className="border-t">
                   <td className="px-4 py-2">{produto.nome}</td>
                   <td className="px-4 py-2">{produto.categoria}</td>
-                  <td className="px-4 py-2">{produto.valor}</td>
+                  <td className="px-4 py-2">{produto.valor.toFixed(2)}</td>
+                  <td className="px-4 py-2">{produto.estoque}</td>
+                  <td className="px-4 py-2">{produto.dt_venci}</td>
+                  <td className="px-4 py-2">{produto.dt_fabrica}</td>
+                  <td className="px-4 py-2">{produto.marca}</td>
+                  <td className="px-4 py-2">{produto.unidadeMedida}</td>
+                  <td className="px-4 py-2">{produto.peso_volume}</td>
                   <td className="px-4 py-2 flex space-x-2">
                     {/* Link para a página de edição do produto */}
                     <Link href={`/produtos/${produto.id}`} className="text-blue-600 hover:underline">

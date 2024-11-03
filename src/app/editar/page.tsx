@@ -27,22 +27,24 @@ const EditarPage = () => {
     try {
       const response = await axios.get('http://localhost:8082/clientes'); // Ajuste a URL da sua API
       setClientes(response.data);
-      setLoading(false);
     } catch (err) {
       setError('Erro ao buscar clientes da API');
-      setLoading(false);
+    } finally {
+      setLoading(false); // Define o loading como false após a busca
     }
   };
 
   // Função para excluir cliente
   const excluirCliente = async (id: number) => {
-    try {
-      await axios.delete(`http://localhost:8082/clientes/${id}`); // Ajuste para a URL de exclusão
-      // Após a exclusão, remova o cliente da lista localmente
-      setClientes(clientes.filter(cliente => cliente.id !== id));
-      alert('Cliente excluído com sucesso');
-    } catch (error) {
-      alert('Erro ao excluir cliente');
+    if (confirm("Tem certeza que deseja excluir este cliente?")) {
+      try {
+        await axios.delete(`http://localhost:8082/clientes/${id}`); // Ajuste para a URL de exclusão
+        // Após a exclusão, remova o cliente da lista localmente
+        setClientes(clientes.filter(cliente => cliente.id !== id));
+        alert('Cliente excluído com sucesso');
+      } catch (error) {
+        alert('Erro ao excluir cliente');
+      }
     }
   };
 
@@ -67,33 +69,27 @@ const EditarPage = () => {
                 <th className="px-4 py-2 text-left text-gray-500">CPF</th>
                 <th className="px-4 py-2 text-left text-gray-500">Telefone</th>
                 <th className="px-4 py-2 text-left text-gray-500">Email</th>
-                <th className="px-4 py-2 text-left text-gray-500">Genero</th>
+                <th className="px-4 py-2 text-left text-gray-500">Gênero</th>
                 <th className="px-4 py-2 text-left text-gray-500">Data de Nascimento</th>
-                <th className="px-4 py-2 text-left text-gray-500">Pontos</th>
-                <th className="px-4 py-2 text-left text-gray-500">Fidelidade</th>
-                <th className="px-4 py-2 text-left text-gray-500">Ação</th>
+                <th className="px-4 py-2 text-left text-gray-500">Ações</th>
               </tr>
             </thead>
             <tbody>
-              {clientes.map((cliente) => (
-                <tr key={cliente.id} className="border-t">
+              {clientes.map(cliente => (
+                <tr key={cliente.id} className="border-b">
                   <td className="px-4 py-2">{cliente.nome}</td>
                   <td className="px-4 py-2">{cliente.cpf}</td>
                   <td className="px-4 py-2">{cliente.telefone}</td>
                   <td className="px-4 py-2">{cliente.email}</td>
                   <td className="px-4 py-2">{cliente.genero}</td>
                   <td className="px-4 py-2">{cliente.dt_nascimento}</td>
-                  <td className="px-4 py-2">{cliente.pontos}</td>
-                  <td className="px-4 py-2">{cliente.fidelidade}</td>
-                  <td className="px-4 py-2 flex space-x-2">
-                    {/* Link para a página de edição do cliente */}
-                    <Link href={`/editar/${cliente.id}`} className="text-blue-600 hover:underline">
-                      Editar
+                  <td className="px-4 py-2">
+                    <Link href={`/editar/${cliente.id}`}>
+                      <button className="bg-blue-600 text-white px-4 py-1 rounded-md hover:bg-blue-700">Editar</button>
                     </Link>
-                    {/* Botão de exclusão */}
                     <button
                       onClick={() => excluirCliente(cliente.id)}
-                      className="text-red-600 hover:underline"
+                      className="ml-2 bg-red-600 text-white px-4 py-1 rounded-md hover:bg-red-700"
                     >
                       Excluir
                     </button>

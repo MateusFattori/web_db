@@ -5,9 +5,16 @@ import axios from "axios";
 import Layout from "../../components/Layout"; // Ajuste conforme necessário
 
 interface Produto {
+  id: string; // Adicionado id
   nome: string;
   categoria: string;
   valor: number;
+  estoque: number; // Adicionado estoque
+  dt_venci: string; // Adicionado dt_venci
+  dt_fabrica: string; // Adicionado dt_fabrica
+  marca: string; // Adicionado marca
+  unidadeMedida: string; // Adicionado unidadeMedida
+  peso_volume: number; // Adicionado peso_volume
 }
 
 const EditarProdutoPage = () => {
@@ -86,6 +93,48 @@ const EditarProdutoPage = () => {
                 placeholder="Valor"
                 value={produto.valor}
                 onChange={(e) => setProduto({ ...produto, valor: Number(e.target.value) })}
+                className="px-4 py-2 border rounded-md shadow-sm focus:ring focus:ring-blue-200"
+              />
+              <input
+                type="number"
+                placeholder="Estoque"
+                value={produto.estoque}
+                onChange={(e) => setProduto({ ...produto, estoque: Number(e.target.value) })}
+                className="px-4 py-2 border rounded-md shadow-sm focus:ring focus:ring-blue-200"
+              />
+              <input
+                type="date"
+                placeholder="Data de Fabricação"
+                value={produto.dt_fabrica}
+                onChange={(e) => setProduto({ ...produto, dt_fabrica: e.target.value })}
+                className="px-4 py-2 border rounded-md shadow-sm focus:ring focus:ring-blue-200"
+              />
+              <input
+                type="date"
+                placeholder="Data de Validade"
+                value={produto.dt_venci}
+                onChange={(e) => setProduto({ ...produto, dt_venci: e.target.value })}
+                className="px-4 py-2 border rounded-md shadow-sm focus:ring focus:ring-blue-200"
+              />
+              <input
+                type="text"
+                placeholder="Marca"
+                value={produto.marca}
+                onChange={(e) => setProduto({ ...produto, marca: e.target.value })}
+                className="px-4 py-2 border rounded-md shadow-sm focus:ring focus:ring-blue-200"
+              />
+              <input
+                type="text"
+                placeholder="Unidade de Medida"
+                value={produto.unidadeMedida}
+                onChange={(e) => setProduto({ ...produto, unidadeMedida: e.target.value })}
+                className="px-4 py-2 border rounded-md shadow-sm focus:ring focus:ring-blue-200"
+              />
+              <input
+                type="number"
+                placeholder="Peso/Volume"
+                value={produto.peso_volume}
+                onChange={(e) => setProduto({ ...produto, peso_volume: Number(e.target.value) })}
                 className="px-4 py-2 border rounded-md shadow-sm focus:ring focus:ring-blue-200"
               />
             </div>

@@ -5,9 +5,16 @@ import axios from 'axios';
 import Layout from './components/Layout';
 
 interface Produto {
+  id: string; // Campo id como String, pois é o tipo no seu modelo
   nome: string;
   categoria: string;
   valor: number;
+  estoque: number; // Novo campo
+  dt_venci: string; // Novo campo
+  dt_fabrica: string; // Novo campo
+  marca: string; // Novo campo
+  unidadeMedida: string; // Novo campo
+  peso_volume: number; // Novo campo
 }
 
 const Home = () => {
@@ -60,14 +67,26 @@ const Home = () => {
                 <th className="px-4 py-2 text-left text-gray-500">Nome do Produto</th>
                 <th className="px-4 py-2 text-left text-gray-500">Categoria</th>
                 <th className="px-4 py-2 text-left text-gray-500">Valor</th>
+                <th className="px-4 py-2 text-left text-gray-500">Estoque</th> {/* Novo campo */}
+                <th className="px-4 py-2 text-left text-gray-500">Data de Vencimento</th> {/* Novo campo */}
+                <th className="px-4 py-2 text-left text-gray-500">Data de Fabricação</th> {/* Novo campo */}
+                <th className="px-4 py-2 text-left text-gray-500">Marca</th> {/* Novo campo */}
+                <th className="px-4 py-2 text-left text-gray-500">Unidade de Medida</th> {/* Novo campo */}
+                <th className="px-4 py-2 text-left text-gray-500">Peso/Volume</th> {/* Novo campo */}
               </tr>
             </thead>
             <tbody>
-              {produtos.map((produto, index) => (
-                <tr key={index} className="border-t">
+              {produtos.map((produto) => (
+                <tr key={produto.id} className="border-t">
                   <td className="px-4 py-2">{produto.nome}</td>
                   <td className="px-4 py-2">{produto.categoria}</td>
                   <td className="px-4 py-2">R$ {produto.valor.toFixed(2)}</td>
+                  <td className="px-4 py-2">{produto.estoque}</td> {/* Novo campo */}
+                  <td className="px-4 py-2">{produto.dt_venci}</td> {/* Novo campo */}
+                  <td className="px-4 py-2">{produto.dt_fabrica}</td> {/* Novo campo */}
+                  <td className="px-4 py-2">{produto.marca}</td> {/* Novo campo */}
+                  <td className="px-4 py-2">{produto.unidadeMedida}</td> {/* Novo campo */}
+                  <td className="px-4 py-2">{produto.peso_volume}</td> {/* Novo campo */}
                 </tr>
               ))}
             </tbody>

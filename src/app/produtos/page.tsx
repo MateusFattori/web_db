@@ -64,7 +64,7 @@ const ListarProdutosPage = () => {
               <tr>
                 <th className="px-4 py-2 text-left text-gray-500">Nome</th>
                 <th className="px-4 py-2 text-left text-gray-500">Categoria</th>
-                <th className="px-4 py-2 text-left text-gray-500">Valor</th>
+                <th className="px-4 py-2 text-left text-gray-500">Preço Unitário</th>
                 <th className="px-4 py-2 text-left text-gray-500">Estoque</th>
                 <th className="px-4 py-2 text-left text-gray-500">Data de Vencimento</th>
                 <th className="px-4 py-2 text-left text-gray-500">Data de Fabricação</th>

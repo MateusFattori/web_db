@@ -17,16 +17,16 @@ const CadastroPage = () => {
     senha: '',
     genero: '',
     dtNascimento: '',
-    pontos: 0,
-    fidelidade: 'NÃO FILIADO', // Alterado para string com valores 'FILIADO' e 'NÃO FILIADO'
+    pontos: '',
+    fidelidade: 'NÃO AFILIADO', // Alterado para string com valores 'FILIADO' e 'NÃO FILIADO'
   });
 
   // Estado para armazenar os dados do formulário de produto
   const [produtoForm, setProdutoForm] = useState({
     nome: '',
     categoria: '',
-    valor: 0,
-    estoque: 0,
+    valor: '',
+    estoque: '',
     dt_venci: '',
     dt_fabrica: '',
     marca: '',
@@ -86,8 +86,8 @@ const CadastroPage = () => {
       senha: '',
       genero: '',
       dtNascimento: '',
-      pontos: 0,
-      fidelidade: 'NÃO FILIADO',
+      pontos: '',
+      fidelidade: 'NÃO AFILIADO',
     });
   };
 
@@ -96,8 +96,8 @@ const CadastroPage = () => {
     setProdutoForm({
       nome: '',
       categoria: '',
-      valor: 0,
-      estoque: 0,
+      valor: '',
+      estoque: '',
       dt_venci: '',
       dt_fabrica: '',
       marca: '',
@@ -224,8 +224,8 @@ const CadastroPage = () => {
                   onChange={(e) => handleChange(e, 'cliente')}
                   className="ml-2 px-4 py-2 border rounded-md focus:ring focus:ring-blue-200"
                 >
-                  <option value="FILIADO">FILIADO</option>
-                  <option value="NÃO FILIADO">NÃO FILIADO</option>
+                  <option value="FILIADO">AFILIADO</option>
+                  <option value="NÃO FILIADO">NÃO AFILIADO</option>
                 </select>
               </label>
             </div>

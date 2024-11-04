@@ -14,7 +14,8 @@ interface Cliente {
   genero: string;
   dt_nascimento: string;
   pontos: number;
-  fidelidade: string; // FILIADO ou NÃO FILIADO
+  fidelidade: string;
+  ativo: string; 
 }
 
 const EditarPage = () => {
@@ -83,6 +84,8 @@ const EditarPage = () => {
                   <td className="px-4 py-2">{cliente.email}</td>
                   <td className="px-4 py-2">{cliente.genero}</td>
                   <td className="px-4 py-2">{cliente.dt_nascimento}</td>
+                  <td className="px-4 py-2">{cliente.pontos}</td>
+                  <td className="px-4 py-2">{cliente.fidelidade}</td>
                   <td className="px-4 py-2">
                     <Link href={`/editar/${cliente.id}`}>
                       <button className="bg-blue-600 text-white px-4 py-1 rounded-md hover:bg-blue-700">Editar</button>
